@@ -5,11 +5,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>HomeWorkJS-_Lesson10</title>
 </head>
 
 <body>
+    <div class="content center"></div>
 
+    <script src="data.js"></script>
+    <script>
+        const style = document.createElement('style');
+        style.textContent = '* {padding: 0; margin: 0;} body {font-family: "Roboto", sans-serif;} a {text-decoration: none;} .center {margin-left: calc(50% - 187.5px); margin-right: calc(50% - 187.5px);} .content {overflow-x: scroll;display: flex; flex-direction: row;justify-content: flex-start;align-items: stretch; flex-wrap: nowrap;gap: 32px;} .user__box {width: 300px; height: auto; border: 3px solid gray; border-radius: 18px; padding-bottom: 15px; } .user__img {width: 300px; height: auto; border-radius: 15px 15px 0px 0px;} .user__name {font-weight: 700; font-size: 17px; line-height: 20px; color: #000000; padding: 10px;} .user__email {font-weight: 400; font-size: 14px; line-height: 17px; color: #222224; padding: 10px;}';
+        document.querySelector('head').appendChild(style);
+
+        const contentEl = document.querySelector('.content');
+        const data = JSON.parse(dataUsers);
+
+        data.forEach(element => {
+            const userBoxEl = document.createElement('div');
+            const imgEl = document.createElement('img');
+            const paragraphEl = document.createElement('p');
+            const emailEl = document.createElement('a');
+
+            userBoxEl.classList = 'user__box';
+            imgEl.classList = 'user__img';
+            paragraphEl.classList = 'user__name';
+            emailEl.classList = 'user__email';
+
+            imgEl.src = element.avatar;
+            imgEl.alt = `Photo ${element.first_name} ${element.last_name}`;
+            paragraphEl.textContent = `${element.first_name} ${element.last_name}`;
+            emailEl.href = element.email;
+            emailEl.textContent = element.email;
+
+            contentEl.appendChild(userBoxEl);
+            userBoxEl.appendChild(imgEl);
+            userBoxEl.appendChild(paragraphEl);
+            userBoxEl.appendChild(emailEl);
+        });
+    </script>
 </body>
 
 </html>
